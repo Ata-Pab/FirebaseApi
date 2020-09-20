@@ -26,12 +26,12 @@ rules_version = '2';
 #### __*Insert your Service Key JSON file into your Project Directory (Below the pom.xml).*__
 
 #### __Firebase Api Initialization__
-```
+```java
         Firebase firebase = new Firebase();
         firebase.app_CloudFirestoreInit();
 ```
 #### __Set Collection name, Document name and Add Data to Cloud Firestore__
-```
+```java
         String collectionName = "User_Informations";
         String documentName1 = "User1";
 
@@ -46,12 +46,12 @@ rules_version = '2';
 ```
 
 #### __Update an Existing Document__
-```
+```java
         firebase.app_UpdateData(collectionName, documentName1, "Password", "asd5456");
         // It does not have to be an existing Field name. If Field name exists, it updates old value with new value
 ```
 #### __Add Second Document to the existing Collection__
-```
+```java
         String documentName2 = "User2";
 
         Map<String, Object> allData2 = new HashMap<>();
@@ -65,21 +65,21 @@ rules_version = '2';
 ```
 
 #### __Delete Existing Field__
-```
+```java
         firebase.app_DeleteField(collectionName, documentName2, "E_Mail");
 ```
 #### __Delete Existing Document__
-```
+```java
         firebase.app_DeleteDocument(collectionName, documentName2);
 ```
 
 #### __Read an existing Data from an existing Document (As Map)__
-```
+```java
         System.out.println(firebase.app_RetrieveDocument(collectionName, documentName2));
 ```
 
 #### __Read an existing Data from an existing Field (As Integer, Long, Double, Boolean or String)__
-```
+```java
         System.out.println(firebase.app_ReadDataFromDoc(collectionName, documentName2, "First_Name"));
         System.out.println(firebase.app_ReadDataFromDoc(collectionName, documentName2, "Age"));
         System.out.println(firebase.app_ReadDataFromDoc(collectionName, documentName2, "Existing"));
@@ -87,7 +87,7 @@ rules_version = '2';
 ```
 
 #### __Read All Existing Documents From Collection as Map__
-```
+```java
         List<Map<String, Object>>  allDataMaps = firebase.app_RetrieveAllDocuments(collectionName);
         for(Map<String, Object> dataMapInDocument : allDataMaps)
         {
@@ -96,19 +96,19 @@ rules_version = '2';
 ```
 
 #### __Listen instant data changes in the Cloud Database (Set Listener)__
-```
+```java
         app_SetRealTimeListener(collectionName, documentName2);
         /* This function prints all Data as Map in Document when any changes or updates happen.
            This function can be overridden or can be change its content (USER CODE HERE part) */
 ```
 
 #### __Terminate Data Change Listener on Cloud Database__
-```
+```java
         app_DetachRealTimeListener(collectionName);
 ```
 
 #### __Learn Collection Existence with identified Document name__
-```
+```java
         if(firebase.app_CollectionExistence(collectionName, documentName1) == Firebase.EXIST)
         {
             System.out.println("This Collection exists!");
